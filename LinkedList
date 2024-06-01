@@ -1,0 +1,109 @@
+public class LinkedList {
+
+  public static void main(String[] args) {
+    linkedlist list = new linkedlist();
+    list.insertAtEnd(23);
+    list.insertAtEnd(34);
+    list.insertAtEnd(55);
+    list.display();
+    System.out.println(list.size);
+    list.deleteAt(1);
+    list.display();
+    System.out.println("Element at index 1 : "+list.getElement(1));
+  }
+}
+
+class linkedlist {
+
+  Node head;
+  Node tail;
+  Node temp;
+  int size = 0;
+
+  class Node {
+
+    int data;
+    Node next;
+
+    Node(int data) {
+      this.data = data;
+    }
+  }
+
+  void insertAtEnd(int data) {
+    Node temp = new Node(data);
+    if (head == null) {
+      head = temp;
+    } else {
+      tail.next = temp;
+    }
+    tail = temp;
+    size++;
+  }
+
+  void insertAtStart(int data) {
+    Node temp = new Node(data);
+    if (head == null) {
+      head = temp;
+    } else {
+      temp.next = head;
+      head = temp;
+      size++;
+    }
+  }
+
+  void insertAt(int data, int index) {
+    Node val = new Node(data);
+    Node temp = head;
+    if (index == 0) {
+      insertAtStart(data);
+    } else if (index == size - 1) {
+      insertAtEnd(data);
+    } else {
+      if (head == null) {
+        System.out.println("List is empty. Cannot insert the value");
+        return;
+      }
+      for (int i = 0; i < index - 1; i++) {
+        temp = temp.next;
+      }
+      val.next = temp.next;
+      temp.next = val;
+    }
+    size++;
+  }
+
+  void display() {
+    Node temp = head;
+    while (temp != null) {
+      System.out.print(temp.data + " ");
+      temp = temp.next;
+    }
+    System.out.println();
+  }
+
+  void deleteAt(int index) {
+    Node temp = head;
+    if(index<0 || index>=size) {
+        System.out.println("Element does not exist");
+        return;
+    } 
+    for(int i=0; i<index-1; i++) {
+        temp = temp.next;
+    }
+    temp.next = temp.next.next;
+    size--;
+  }
+
+  int getElement(int index) {
+    Node temp = head;
+    if(index < 0 || index >= size) {
+        System.out.println("Element does no exist");
+        return -1;
+    }
+    for(int i=0; i<=index-1; i++) {
+        temp = temp.next;
+    }
+    return temp.data;
+  }
+}
