@@ -1,1 +1,44 @@
-//Code for stack coming soon
+class ArrayStack {
+    int index=-1, size;
+    int arr[];
+
+    Stack(int size) {
+        this.size = size;
+        arr = new int[size];
+    }
+
+    void push(int val) {
+        if(index == size) {
+            System.out.println("Stack overflow");
+            return;
+        } else {
+            arr[++index] = val;
+        }
+    }
+
+    int pop() {
+        if(index == -1) {
+            System.out.println("Stack underflow");
+            return -1;
+        } else {
+            return arr[index--];
+        }
+    }
+
+    int peek() {
+        return arr[index];
+    }
+
+    int length() {
+        return (index+1);
+    }
+
+    void display() {
+        for(int i=0; i<=index; i++) {
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println();
+    }
+    
+
+}
