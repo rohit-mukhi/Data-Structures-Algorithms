@@ -1,18 +1,3 @@
-public class LinkedList {
-
-  public static void main(String[] args) {
-    linkedlist list = new linkedlist();
-    list.insertAtEnd(23);
-    list.insertAtEnd(34);
-    list.insertAtEnd(55);
-    list.display();
-    System.out.println(list.size);
-    list.deleteAt(1);
-    list.display();
-    System.out.println("Element at index 1 : "+list.getElement(1));
-  }
-}
-
 class linkedlist {
 
   Node head;
