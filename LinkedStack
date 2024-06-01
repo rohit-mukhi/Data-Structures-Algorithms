@@ -1,0 +1,47 @@
+class LinkedStack {
+
+    Node head, tail;
+    class Node {
+        int data;
+        Node next;
+        Node(int data) {
+            this.data = data;
+        }
+    }
+    void push(int val) {
+        Node temp = new Node(val);
+        if(head == null) {
+            head = temp;
+        } else {
+            tail.next = temp;
+        }
+        tail = temp;
+    }
+
+    void pop() {
+        Node temp = head;
+        while(temp.next.next != null) {
+            temp = temp.next;
+        }
+        temp.next = null;
+    }
+
+    int peek() {
+        Node temp = head;
+        while(temp.next!= null) {
+            temp = temp.next;
+        }
+        return temp.data;
+    }
+
+    void display() {
+        Node temp = head;
+        while(temp != null) {
+            System.out.print(temp.data+" ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+}
+
