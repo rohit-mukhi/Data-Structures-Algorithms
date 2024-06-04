@@ -1,0 +1,46 @@
+//This class linked list implementation of queue data structure.
+//This class offers basic queue features like push, pop, peek, display and length of queue.
+//All features can be accesed by methods of same name except length which is an instance variable.
+
+class LinkedQueue {
+
+    Node head, tail;
+    int length = 0;
+    class Node {
+        int data;
+        Node next;
+        Node(int data) {
+            this.data = data;
+        }
+    }
+    void push(int val) {
+        Node temp = new Node(val);
+        if(head == null) {
+            head = temp;
+        } else {
+            tail.next = temp;
+        }
+        tail = temp;
+        length++;
+    }
+
+    void pop() {
+        head = head.next;
+        length--;
+    }
+
+    int peek() {
+        return head.data;
+    }
+
+    void display() {
+        Node temp = head;
+        while(temp != null) {
+            System.out.print(temp.data+" ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+}
+
