@@ -1,0 +1,56 @@
+public class Generics {
+    public static void main(String[] args) {
+        Data<Integer> obj1 = new Data<Integer>(3000);
+        Data<String> obj2 = new Data<String>("Tony");
+        obj1.print();
+        obj2.print();
+
+        Details <String, Integer> person  = new Details<String, Integer>("Rohit", 20);
+        person.display();
+
+        Integer arr[] = {1, 2, 3, 4};
+        Items <Integer> list = new Items<Integer>(arr);
+        list.print();
+    }
+}
+
+class Data <T> {
+    T value;
+
+    Data(T value) {
+        this.value = value;
+    }
+
+    void print() {
+        System.out.println(value);
+    }
+}
+
+class Details <T1, T2> {
+    T1 name;
+    T2 age;
+
+    Details(T1 name, T2 age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    void display() {
+        System.out.println(name+" "+age);
+    }
+}
+
+class Items <E> {
+    E arr[];
+
+    Items(E arr[]) {
+        this.arr = arr;
+    }
+
+    void print() {
+        for(E element : arr) {
+            System.out.print(element+" ");
+        }
+        System.out.println();
+    }
+}
