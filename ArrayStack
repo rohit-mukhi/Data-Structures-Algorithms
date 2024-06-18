@@ -2,7 +2,7 @@ class ArrayStack {
     int index=-1, size;
     int arr[];
 
-    Stack(int size) {
+    ArrayStack(int size) {
         this.size = size;
         arr = new int[size];
     }
