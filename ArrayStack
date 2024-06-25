@@ -8,7 +8,7 @@ class ArrayStack {
     }
 
     void push(int val) {
-        if(index == size) {
+        if(index == size-1) {
             System.out.println("Stack overflow");
             return;
         } else {
