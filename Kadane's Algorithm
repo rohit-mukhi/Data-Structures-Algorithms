@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class Kadane_Algorithm {
+    public static void main(String[] args) {
+        // Here is Kadane's algorithm
+        // Kadane's algorithm is a dynamic programming approach
+
+        Scanner scan = new Scanner(System.in);
+        
+        // Entering values in array
+        System.out.println("Enter size of array : ");
+        int n = scan.nextInt();
+        int arr[] = new int[n];
+        System.out.print("Enter values : ");
+        for(int i=0; i<n; i++) {
+          arr[i] = scan.nextInt();
+        }
+ 
+        // kadane's Algorithm starts here
+        int currSum = 0;
+        int ans = Integer.MIN_VALUE;
+        for(int i=0; i<n; i++) {
+            currSum += arr[i];
+            ans = Math.max(currSum, ans);
+            currSum = currSum < 0 ? 0 : currSum; 
+        }
+        // kadane's algorithm ends here
+
+        System.out.println("Largest sum = " + ans);
+        scan.close();
+    }
+}
