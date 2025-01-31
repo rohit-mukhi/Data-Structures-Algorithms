@@ -1,0 +1,69 @@
+import java.util.Scanner;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+public class Solution {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter number of nodes : ");
+        int num = scan.nextInt();
+        BFS list = new BFS(num);
+        System.out.println("Enter edges (format : u v)");
+        char ch = 'y';
+        while(ch == 'y') {
+            System.out.print("Vertices : ");
+            int u = scan.nextInt();
+            int v = scan.nextInt();
+            if(u>=0 && u<num && v>=0 && v<num) {
+                list.addEdge(u, v);
+            } else {
+                System.out.println("Such nodes cannot exist.");
+            }
+            System.out.print("Do you want to continue? (y/n) : ");
+            ch = scan.next().charAt(0);
+            ch = Character.toLowerCase(ch);
+        }
+        System.out.print("Enter starting vertex (0-" + num +") : ");
+        int start = scan.nextInt();
+        System.out.print("BFS list : ");
+        list.traverse(start);
+        scan.close();
+    }
+}
+
+class BFS {
+    int verticesNumber;
+    LinkedList <Integer> adj[];
+
+    BFS(int n) {
+        this.verticesNumber = n;
+        adj = new LinkedList[n];
+        for(int i=0; i<n; i++) {
+            adj[i] = new LinkedList<>();
+        }
+    }
+
+    void addEdge(int u, int v) {
+        adj[u].add(v);
+        adj[v].add(u);
+    }
+
+    void traverse(int startIndex) {
+        boolean visited[] = new boolean[verticesNumber];
+        visited[startIndex] = true;
+        Queue <Integer> temp = new LinkedList<>();
+        temp.add(startIndex);
+        while(!temp.isEmpty()) {
+            int node = temp.remove();
+            System.out.print(node + " ");
+
+            for(int vertex : adj[node]) {
+                if(visited[vertex] == false) {
+                    visited[vertex] = true;
+                    temp.add(vertex);
+                }
+            }
+        }
+        System.out.println();
+    }
+}
