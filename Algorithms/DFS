@@ -1,0 +1,70 @@
+import java.util.Scanner;
+import java.util.LinkedList;
+import java.util.Stack;
+public class DFS_Solution {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter number of nodes : ");
+        int num = scan.nextInt();
+        DFS list = new DFS(num);
+        System.out.println("Enter edges (format : u v)");
+        char ch = 'y';
+        while(ch == 'y') {
+            System.out.print("Vertices : ");
+            int u = scan.nextInt();
+            int v = scan.nextInt();
+            if(u>=0 && u<num && v>=0 && v<num) {
+                list.addEdge(u, v);
+            } else {
+                System.out.println("Such nodes cannot exist.");
+            }
+            System.out.print("Do you want to continue? (y/n) : ");
+            ch = scan.next().charAt(0);
+            ch = Character.toLowerCase(ch);
+        }
+        System.out.print("Enter starting vertex (0-" + num +") : ");
+        int start = scan.nextInt();
+        System.out.print("DFS list : ");
+        list.traverse(start);
+        scan.close();
+    }
+}
+
+class DFS {
+    int vertexNum;
+    LinkedList <Integer> adj[];
+
+    DFS(int n) {
+        this.vertexNum = n;
+        adj = new LinkedList[n];
+
+        for(int i=0; i<n; i++) {
+            adj[i] = new LinkedList<>();
+        }
+    }
+
+    void addEdge(int u, int v) {
+        adj[u].add(v);
+        adj[v].add(u);
+    }
+
+    void traverse(int start) {
+        boolean visited[] = new boolean[vertexNum];
+        Stack <Integer> temp = new Stack<>();
+        temp.push(start);
+
+        while(!temp.isEmpty()) {
+             start = temp.pop();
+
+            if(!visited[start]) {
+                visited[start] = true;
+                System.out.print(start + " ");
+                for(int v : adj[start]) {
+                    if(!visited[v]) temp.push(v);
+                }
+            }
+        }
+        System.out.println();
+    }
+}
+
