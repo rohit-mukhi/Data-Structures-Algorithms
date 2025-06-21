@@ -1,4 +1,5 @@
 // This code is for insertion sort
+// Worst case time is O(n^2)
 
 public class InsertionSort {
 
