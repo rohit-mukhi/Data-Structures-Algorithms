@@ -22,10 +22,14 @@ public class MergeSort {
         int nr = r-q;
         int[] arr1 = new int[nl];
         int[] arr2 = new int[nr];
+
+        
         for(int i=0; i<nl; i++)
             arr1[i] = arr[p+i];
         for(int j=0; j<nr; j++)
             arr2[j] = arr[q+j+1];
+
+        
         int i=0, j=0, k=p;
         
         
